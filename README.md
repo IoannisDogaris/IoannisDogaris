@@ -1,16 +1,26 @@
-## Hi there 👋
+# Hi, I'm Ioannis Dogaris 👋
 
-<!--
-**IoannisDogaris/IoannisDogaris** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## 🧬 Bioprocess Engineer → 📊 Data Scientist
 
-Here are some ideas to get you started:
+I'm a bioprocess engineer & biotechnology specialist with 15 years of experience, expanding into data science. I specialize in applying machine learning and statistical analysis to solve real-world bioprocessing challenges.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 🔬 Domain Expertise
+- Upstream/Downstream bioprocessing
+- Process optimization and scale-up
+- Quality control and regulatory compliance
+- Bioreactor design and operation
+
+### 💻 Technical Skills
+- **Languages**: R
+- **ML/Stats**: Predictive modeling, DOE, time series analysis
+- **Tools**: RStudio, Git 
+- **Specialized**: Process simulation, bioprocess analytics
+
+### 📈 What I Do
+I bridge the gap between bioprocess engineering and data science, focusing on:
+- Process optimization through data-driven insights
+- Predictive maintenance for bioprocess equipment
+- Quality prediction and control strategies
+- Yield improvement through advanced analytics
+
+📧 [ioannis.dogaris@gmail.com] | 💼 [LinkedIn] [https://www.linkedin.com/in/ioannisdogaris/]
