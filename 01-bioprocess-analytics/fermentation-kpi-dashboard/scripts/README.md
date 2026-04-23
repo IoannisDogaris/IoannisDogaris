@@ -1,1 +1,1 @@
-Initial project setup — content coming soon.
+This folder contains R scripts for data cleaning, KPI calculation, and visualization.
