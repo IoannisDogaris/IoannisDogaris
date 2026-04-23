@@ -1,1 +1,1 @@
-Initial project setup — content coming soon.
+This folder stores generated plots, tables, and reports.
