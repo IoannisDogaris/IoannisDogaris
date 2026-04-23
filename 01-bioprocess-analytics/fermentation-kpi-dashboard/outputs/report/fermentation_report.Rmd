@@ -1,0 +1,48 @@
+```markdown
+---
+title: "Fermentation KPI Analysis"
+author: "Ioannis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+data <- read_csv("../../data/simulated_fermentation_data.csv")
+```
+
+## Overview
+This report summarizes key fermentation KPIs and visualizes process trends using simulated data.
+
+## KPI Summary
+```{r}
+data %>%
+  summarise(
+    max_biomass = max(biomass_gL),
+    min_glucose = min(glucose_gL),
+    avg_do = mean(do_pct),
+    final_pH = last(ph)
+  )
+```
+
+## Biomass Growth
+```{r, echo=FALSE}
+ggplot(data, aes(time_hr, biomass_gL)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  theme_minimal()
+```
+
+## Glucose Consumption
+```{r, echo=FALSE}
+ggplot(data, aes(time_hr, glucose_gL)) +
+  geom_line(color = "firebrick", size = 1.2) +
+  theme_minimal()
+```
+
+## DO Profile
+```{r, echo=FALSE}
+ggplot(data, aes(time_hr, do_pct)) +
+  geom_line(color = "darkgreen", size = 1.2) +
+  theme_minimal()
+```
+```
+
