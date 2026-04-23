@@ -7,42 +7,140 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(readr)
+
+# Load data
 data <- read_csv("../../data/simulated_fermentation_data.csv")
 ```
 
-## Overview
-This report summarizes key fermentation KPIs and visualizes process trends using simulated data.
+# 📘 Overview
+This report summarizes key fermentation KPIs and visualizes process trends using simulated fed‑batch data.  
+It demonstrates a reproducible analytics workflow suitable for bioprocess development, MSAT, and GMP digitalization environments.
 
-## KPI Summary
+---
+
+# 🧪 Methods
+The analysis includes:
+- Importing and cleaning simulated fermentation data  
+- Calculating essential KPIs (biomass, glucose, DO, pH)  
+- Visualizing process behavior over time  
+- Interpreting trends from a bioprocess engineering perspective  
+
+All analysis is performed in **R** using tidyverse and ggplot2.
+
+---
+
+# 📊 Data Overview
+
 ```{r}
-data %>%
+head(data)
+summary(data)
+```
+
+The dataset includes:
+- **Biomass (g/L)**  
+- **Glucose (g/L)**  
+- **Dissolved Oxygen (%)**  
+- **pH**  
+- **Temperature (°C)**  
+- **Time (hr)**  
+
+---
+
+# 📈 KPI Summary
+
+```{r}
+kpis <- data %>%
   summarise(
     max_biomass = max(biomass_gL),
     min_glucose = min(glucose_gL),
     avg_do = mean(do_pct),
     final_pH = last(ph)
   )
+
+kpis
 ```
 
-## Biomass Growth
+---
+
+# 📈 Biomass Growth Curve
+
 ```{r, echo=FALSE}
 ggplot(data, aes(time_hr, biomass_gL)) +
   geom_line(color = "steelblue", size = 1.2) +
-  theme_minimal()
+  theme_minimal() +
+  labs(title = "Biomass Growth Over Time",
+       x = "Time (hr)",
+       y = "Biomass (g/L)")
 ```
 
-## Glucose Consumption
+---
+
+# 📉 Glucose Consumption
+
 ```{r, echo=FALSE}
 ggplot(data, aes(time_hr, glucose_gL)) +
   geom_line(color = "firebrick", size = 1.2) +
-  theme_minimal()
+  theme_minimal() +
+  labs(title = "Glucose Consumption Over Time",
+       x = "Time (hr)",
+       y = "Glucose (g/L)")
 ```
 
-## DO Profile
+---
+
+# Dissolved Oxygen Profile
+
 ```{r, echo=FALSE}
 ggplot(data, aes(time_hr, do_pct)) +
   geom_line(color = "darkgreen", size = 1.2) +
-  theme_minimal()
-```
+  theme_minimal() +
+  labs(title = "Dissolved Oxygen Profile",
+       x = "Time (hr)",
+       y = "DO (%)")
 ```
 
+---
+
+# 📊 Combined Process Overview
+
+```{r, echo=FALSE}
+data_long <- data %>%
+  pivot_longer(cols = c(biomass_gL, glucose_gL, do_pct),
+               names_to = "variable",
+               values_to = "value")
+
+ggplot(data_long, aes(time_hr, value, color = variable)) +
+  geom_line(size = 1.1) +
+  theme_minimal() +
+  labs(title = "Overall Fermentation Profile",
+       x = "Time (hr)",
+       y = "Value",
+       color = "Variable")
+```
+
+---
+
+# 🧠 Discussion
+The fermentation shows expected fed‑batch behavior:
+
+- **Biomass** increases steadily, indicating healthy growth.  
+- **Glucose** decreases as biomass consumes substrate.  
+- **DO** declines as oxygen demand rises with cell density.  
+- **pH** shows a slight downward trend, consistent with metabolic acidification.  
+
+These KPIs provide a quick snapshot of process performance and can support routine monitoring, troubleshooting, and comparison across batches.
+
+---
+
+# 🏁 Conclusion
+This report demonstrates a clean, reproducible workflow for analyzing fermentation data using R.  
+The approach can be extended to:
+
+- Batch‑to‑batch comparison  
+- Anomaly detection  
+- Soft‑sensor development  
+- Automated dashboards (Shiny)  
+- SPC charting for GMP environments  
+
+This project highlights the integration of **bioprocess engineering expertise** with **modern data analytics**, aligning with digitalization and MSAT expectations.
