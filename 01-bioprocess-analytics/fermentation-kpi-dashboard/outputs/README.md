@@ -1,1 +1,1 @@
-This folder stores generated plots, tables, and reports.
+RMarkdown or PDF reports summarizing the analysis will be stored here.
