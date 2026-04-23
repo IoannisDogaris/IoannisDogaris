@@ -1,0 +1,4 @@
+batch_id,time_hr,biomass_gL,glucose_gL,do_pct,ph,temp_C
+B001,0,0.1,40,100,7.0,30
+B001,4,0.5,35,80,6.9,30
+B001,8,1.2,28,60,6.8,30
