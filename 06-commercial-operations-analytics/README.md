@@ -71,20 +71,20 @@ They’re basic but useful for getting a quick sense of what’s going on.
 
 ## Files & Structure
 
-data/
-raw_sales.csv
-cleaned_sales.csv
-
-scripts/
-00_generate_data.R
-01_cleaning.R
-02_eda_kpis.R
-03_visualizations.R
-04_export_for_excel.R
-
-outputs/
-charts/
-dashboard.xlsx
+commercial-operations-analytics/
+├── data/
+│   ├── raw_sales.csv
+│   └── cleaned_sales.csv
+├── scripts/
+│   ├── 00_generate_data.R
+│   ├── 01_cleaning.R
+│   ├── 02_eda_kpis.R
+│   ├── 03_visualizations.R
+│   └── 04_export_for_excel.R
+├── outputs/
+│   ├── charts/
+│   └── dashboard.xlsx
+└── README.md
 
 ---
 
