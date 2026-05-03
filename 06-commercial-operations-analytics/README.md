@@ -71,6 +71,7 @@ They’re basic but useful for getting a quick sense of what’s going on.
 
 ## Files & Structure
 
+``` 
 commercial-operations-analytics/
 ├── data/
 │   ├── raw_sales.csv
@@ -85,6 +86,7 @@ commercial-operations-analytics/
 │   ├── charts/
 │   └── dashboard.xlsx
 └── README.md
+``` 
 
 ---
 
