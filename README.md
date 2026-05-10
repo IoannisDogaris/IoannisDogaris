@@ -17,7 +17,7 @@ My focus is applying analytics, machine learning and statistical modeling to sol
 ---
 
 ## 📊 Bioprocess Analytics & Modeling
-I apply analytics and ML to solve real bioprocess challenges:
+I apply analytics and ML to support data‑driven decision‑making in bioprocessing:
 
 - Time‑series modeling for bioreactor monitoring  
 - Soft sensors for biomass, metabolites, and KPIs  
@@ -37,9 +37,18 @@ I apply analytics and ML to solve real bioprocess challenges:
 ---
 
 ## 🚀 Featured Projects
-### **Commercial Operations Analytics (R + Excel)**
+
+### **03 – Automated Statistics Pipeline (R, targets, Quarto)**  
+A fully reproducible statistics pipeline demonstrating automated data ingestion, cleaning, descriptive statistics, table generation, visualization, and bilingual reporting (English + Swedish).  
+Designed to reflect public‑sector statistical production workflows using `targets` and Quarto.
+
+### **02 – Commercial Operations Analytics (R + Excel)**  
 End‑to‑end analytics workflow with synthetic data, KPI engineering, ggplot analysis, and an interactive Excel dashboard with slicers and KPI cards.  
 *Demonstrates data engineering, visualization, and business‑oriented analytics.*
+
+### **01 – Fermentation KPI Dashboard (Bioprocess Analytics)**  
+A reproducible R‑based analysis of fermentation performance metrics, including data cleaning, KPI engineering, visualization, and a structured R Markdown report.  
+*Demonstrates bioprocess analytics, reproducible workflows, and clear scientific communication.*
 
 ### **Bioreactor Time‑Series Analysis** *(in progress)*  
 Anomaly detection, forecasting, and soft‑sensor development for upstream processes.
