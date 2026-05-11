@@ -1,0 +1,3 @@
+# Parameters for the pipeline
+min_age: 16
+max_age: 24

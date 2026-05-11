@@ -1,0 +1,91 @@
+---
+title: "Labour Market Indicators for Youth"
+subtitle: "Automated Statistics Pipeline"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+execute:
+  echo: false
+  warning: false
+  message: false
+params:
+  data: null
+  descriptives: null
+  tables: null
+  plots: null
+---
+
+# Overview
+
+This report presents key labour market indicators for youth (ages 16–24) across Swedish municipalities.  
+All results are generated through a fully reproducible `targets` pipeline.
+
+The analysis includes:
+
+- population structure  
+- unemployment and employment rates  
+- breakdowns by sex and age group  
+- descriptive statistics  
+- tables and visualisations  
+
+---
+
+# Data Summary
+
+```{r}
+params$data |>
+  dplyr::glimpse()
+```
+
+---
+
+# Descriptive Statistics
+
+```{r}
+params$descriptives
+```
+
+---
+
+# Tables
+
+```{r}
+htmltools::HTML(params$tables$main_table_html)
+```
+
+---
+
+# Plots
+
+Unemployment Rate by Municipality
+
+
+![](params$plots["unemployment_plot"])
+
+Employment Rate by Municipality
+
+
+![](params$plots["employment_plot"])
+
+---
+
+# Methodology
+
+This report is generated using:
+- **R** (tidyverse, gt, ggplot2)
+- **targets** for reproducible workflows
+- **Quarto** for reporting
+The dataset is synthetic and constructed to mimic municipal‑level labour market indicators.
+
+---
+
+# Reporducibility
+
+All results in this report are produced automatically through the reproducible
+pipeline defined in `_targets.R`, using the `{targets}` package.
+
+The report itself is rendered using precomputed results passed via `execute_params`.
+
+---

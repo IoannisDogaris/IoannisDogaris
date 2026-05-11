@@ -1,0 +1,90 @@
+---
+title: "Arbetsmarknadsindikatorer för Unga"
+subtitle: "Automatiserad Statistikpipeline"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+execute:
+  echo: false
+  warning: false
+  message: false
+params:
+  data: null
+  descriptives: null
+  tables: null
+  plots: null
+---
+
+# Översikt
+
+Denna rapport presenterar centrala arbetsmarknadsindikatorer för unga (16–24 år) i Sveriges kommuner.  
+Alla resultat genereras via en reproducerbar `targets`‑pipeline.
+
+Analysen omfattar:
+
+- befolkningsstruktur  
+- arbetslöshets- och sysselsättningsgrad  
+- uppdelning efter kön och åldersgrupp  
+- deskriptiv statistik  
+- tabeller och visualiseringar  
+
+---
+
+# Datasammanfattning
+
+```{r}
+params$data |>
+  dplyr::glimpse()
+```
+
+---
+
+# Deskriptiv Statistik
+
+```{r}
+params$descriptives
+```
+
+---
+
+# Tabeller
+
+```{r}
+htmltools::HTML(params$tables$main_table_html)
+```
+
+---
+
+# Diagram
+
+Arbetslöshet per kommun
+
+
+![](params$plots["unemployment_plot"])
+
+Sysselsättning per kommun
+
+
+![](params$plots["employment_plot"])
+
+---
+
+# Metod
+
+Rapporten genereras med:
+- **R** (tidyverse, gt, ggplot2)
+- **targets** för reproducerbara arbetsflöden
+- **Quarto** för rapportering
+Datasettet är syntetiskt och konstruerat för att efterlikna kommunnivådata för arbetsmarknadsindikatorer.
+
+---
+
+# Reproducerbarhet
+
+Alla resultat i denna rapport har genererats automatiskt genom den reproducerbara analyskedja som definieras `i _targets.R` och körs med hjälp av paketet `{targets}`.
+
+Själva rapporten renderas med förberäknade resultat som överförs via `execute_params`, vilket säkerställer transparens, spårbarhet och full upprepbarhet.
+
+---

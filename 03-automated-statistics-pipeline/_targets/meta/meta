@@ -1,0 +1,18 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+raw_data_file|stem|5eb4f4e9ee030627|81bfd0bfd1d9071d|2c530c1562a7fbd1|-669943514|data/raw/synthetic_labour_market.csv|t20583.9340455476s|s330594b|330594|file|local|vector|||0.83||
+config_file|stem|58df2834ae18f761|5ea72c08496e3290|2c530c1562a7fbd1|-615108176|config/parameters.yml|t20583.9355636065s|s57b|57|file|local|vector|||0||
+raw_data|stem|d60b4bc5b240b1a2|27c674480e688b45|4f967fa79a13bbd3|-1101284392||t20584.0289735102s|s45395b|45395|rds|local|vector|||0.11||
+params|stem|7029931755cc4c0d|a8e842b5a57e39b7|7ae3d4a5f87a2244|-675321759||t20584.0289740786s|s94b|94|rds|local|vector|||0.01||
+cleaned_data|stem|a22b751bd21e4bb0|e3c6d024685043a4|f2a093ca8e71d58b|630830729||t20584.0289746671s|s45194b|45194|rds|local|vector|||0||
+descriptives|stem|b2ce1c3f8caf6ac9|ef755ecc471097e9|e69e02ecc63a05cb|-1799507461||t20584.0289752455s|s179b|179|rds|local|vector|||0||
+processed_data_file|stem|5eb4f4e9ee030627|d4746b7a1971c49a|aed44f8ab4f92060|-1479800387|data/processed/processed_data.csv|t20584.0289778382s|s330594b|330594|file|local|vector|||0.22||
+tables|stem|bfe54dc0b93ddeb5|012040a5a854a1a5|900075440e64b81d|629895215||t20584.0321103207s|s1099b|1099|rds|local|vector|||0.17||
+report_sv|stem|acf63d5469c872f9|8bccbb5547334738|81952aa9cca554ed|-44772313|reports/report_sv.html|t20584.0418587367s|s27239b|27239|file|local|vector|||8.53||
+report_en|stem|df374c26f749306c|616301dbbb3789d3|81952aa9cca554ed|-1726068132|reports/report_en.html|t20584.0419199111s|s27101b|27101|file|local|vector|||5.23||
+clean_data|function|8f0e0d1c1f957764
+read_raw_data|function|226fce3ae54dc0c2
+make_tables|function|9c84b9275c3d8dee
+render_report|function|4175dc71d5eef155
+make_plots|function|daed841d45202594
+compute_descriptives|function|fbaecc0040a47365
+plots|stem|1c812897f4590dc8|fd385cb9f234bced|fbf1f30f99d3ca96|765790996|reports/unemployment_plot.png*reports/employment_plot.png|t20584.0337545739s||764916|file|local|vector|||||Error resolving output location: missing files: unemployment_plot.png, employment_plot.png
