@@ -166,20 +166,25 @@ $avg_employment
 </section>
 <section id="diagram" class="level1">
 <h1>Diagram</h1>
-<p>Arbetslöshet per kommun</p>
-<p><img src="params$plots%5B%22unemployment_plot%22%5D.png" class="img-fluid"></p>
-<p>Sysselsättning per kommun</p>
-<p><img src="params$plots%5B%22employment_plot%22%5D.png" class="img-fluid"></p>
+<p>Fördelning av kommunala ungdomsarbetslöshetsnivåer</p>
+<p><img src="params$unemployment_plot.png" class="img-fluid"></p>
+<p>Fördelning av kommunala sysselsättningsnivåer bland unga över tid</p>
+<p><img src="params$employment_plot.png" class="img-fluid"></p>
 <hr>
 </section>
 <section id="metod" class="level1">
 <h1>Metod</h1>
-<p>Rapporten genereras med: - <strong>R</strong> (tidyverse, gt, ggplot2) - <strong>targets</strong> för reproducerbara arbetsflöden - <strong>Quarto</strong> för rapportering Datasettet är syntetiskt och konstruerat för att efterlikna kommunnivådata för arbetsmarknadsindikatorer.</p>
+<p>Rapporten genereras med:</p>
+<ul>
+<li><strong>R</strong> (tidyverse, gt, ggplot2)</li>
+<li><strong>targets</strong> för reproducerbara arbetsflöden</li>
+<li><strong>Quarto</strong> för rapportering Datasettet är syntetiskt och konstruerat för att efterlikna kommunnivådata för arbetsmarknadsindikatorer.</li>
+</ul>
 <hr>
 </section>
 <section id="reproducerbarhet" class="level1">
 <h1>Reproducerbarhet</h1>
-<p>Alla resultat i denna rapport har genererats automatiskt genom den reproducerbara analyskedja som definieras <code>i _targets.R</code> och körs med hjälp av paketet <code>{targets}</code>.</p>
+<p>Alla resultat i denna rapport har genererats automatiskt genom den reproducerbara analyskedja som definieras i <code>_targets.R</code> och körs med hjälp av paketet <code>{targets}</code>.</p>
 <p>Själva rapporten renderas med förberäknade resultat som överförs via <code>execute_params</code>, vilket säkerställer transparens, spårbarhet och full upprepbarhet.</p>
 <hr>
 </section>

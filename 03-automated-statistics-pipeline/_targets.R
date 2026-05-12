@@ -66,12 +66,12 @@ list(
   ),
 
   tar_target(
-  processed_data_file,
-  {
-    readr::write_csv(cleaned_data, "data/processed/processed_data.csv")
-    "data/processed/processed_data.csv"
-  },
-  format = "file"
+    processed_data_file,
+    {
+      readr::write_csv(cleaned_data, "data/processed/processed_data.csv")
+      "data/processed/processed_data.csv"
+    },
+    format = "file"
   ),
 
   # Descriptive statistics
@@ -82,19 +82,46 @@ list(
 
   # Tables
   tar_target(
-  tables,
-  {
-    tbl <- make_tables(cleaned_data, descriptives)$main_table
-    list(
-      main_table_html = gt::as_raw_html(tbl)
-    )
-  }
+    tables,
+    {
+      tbl <- make_tables(cleaned_data, descriptives)$main_table
+      list(
+        main_table_html = gt::as_raw_html(tbl)
+      )
+    }
   ),
 
-  # Plots
+  # Plots & exports
   tar_target(
     plots,
-    make_plots(cleaned_data, descriptives),
+    make_plots(cleaned_data),
+  ),
+
+  tar_target(
+    unemployment_plot_file,
+    {
+      ggsave(
+        filename = "reports/unemployment_plot.png",
+        plot = plots$unemployment,
+        width = 8,
+        height = 5
+      )
+      "reports/unemployment_plot.png"
+    },
+    format = "file"
+  ),
+
+  tar_target(
+    employment_plot_file,
+    {
+      ggsave(
+        filename = "reports/employment_plot.png",
+        plot = plots$employment,
+        width = 8,
+        height = 5
+      )
+      "reports/employment_plot.png"
+    },
     format = "file"
   ),
 
@@ -108,7 +135,8 @@ list(
           data = cleaned_data,
           descriptives = descriptives,
           tables = tables,
-          plots = plots
+          unemployment_plot = basename(unemployment_plot_file),
+          employment_plot = basename(employment_plot_file)
         )
       )
       "reports/report_en.html"
@@ -126,7 +154,8 @@ list(
           data = cleaned_data,
           descriptives = descriptives,
           tables = tables,
-          plots = plots
+          unemployment_plot = unemployment_plot_file,
+          employment_plot = employment_plot_file
         )
       )
       "reports/report_sv.html"

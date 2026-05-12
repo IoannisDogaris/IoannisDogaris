@@ -1,34 +1,35 @@
 # R/plots.R
-make_plots <- function(df, descriptives) {
 
+make_plots <- function(df) {
+  # 1) Unemployment rate — distribution
   unemployment_plot <- df |>
-    group_by(municipality) |>
-    summarise(unemployment = mean(unemployment_rate)) |>
-    ggplot(aes(x = unemployment, y = reorder(municipality, unemployment))) +
-    geom_col() +
+    ggplot(aes(x = unemployment_rate)) +
+    geom_histogram(
+      bins = 30,
+      fill = "skyblue",
+      color = "white"
+    ) +
     labs(
-      title = "Average Unemployment Rate by Municipality",
-      x = "Unemployment (%)",
-      y = "Municipality"
-    )
+      title = "Distribution of Youth Unemployment Rates by Municipality",
+      x = "Unemployment rate (%)",
+      y = "Number of municipalities"
+    ) +
+    theme_minimal()
 
+  # 2) Employment rate — boxplot
   employment_plot <- df |>
-    group_by(municipality) |>
-    summarise(employment = mean(employment_rate)) |>
-    ggplot(aes(x = employment, y = reorder(municipality, employment))) +
-    geom_col() +
+    ggplot(aes(x = factor(year), y = employment_rate)) +
+    geom_boxplot(fill = "gray") +
     labs(
-      title = "Average Employment Rate by Municipality",
-      x = "Employment (%)",
-      y = "Municipality"
-    )
-  
-  ggsave("reports/unemployment_plot.png", unemployment_plot, width = 8, height = 5)
-  ggsave("reports/employment_plot.png", employment_plot, width = 8, height = 5)
+      title = "Municipal Distribution of Youth Employment Rates by Year",
+      y = "Employment rate (%)",
+      x = "Year"
+    ) +
+    theme_minimal()
 
-  return(c(
-  unemployment_plot = "unemployment_plot.png",
-  employment_plot   = "employment_plot.png"
-))
-
+  # Return plots
+  return(list(
+    unemployment = unemployment_plot,
+    employment = employment_plot
+  ))
 }

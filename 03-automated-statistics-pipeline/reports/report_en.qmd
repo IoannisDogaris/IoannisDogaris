@@ -14,7 +14,9 @@ params:
   data: null
   descriptives: null
   tables: null
-  plots: null
+  unemployment_plot: null
+  employment_plot: null
+
 ---
 
 # Overview
@@ -59,21 +61,22 @@ htmltools::HTML(params$tables$main_table_html)
 
 # Plots
 
-Unemployment Rate by Municipality
+Distribution of Municipal Youth Unemployment Rates
 
 
-![](params$plots["unemployment_plot"])
+![](`r params$unemployment_plot`)
 
-Employment Rate by Municipality
+Distribution of Municipal Youth Employment Rates by Year
 
 
-![](params$plots["employment_plot"])
+![](`r params$employment_plot`)
 
 ---
 
 # Methodology
 
 This report is generated using:
+
 - **R** (tidyverse, gt, ggplot2)
 - **targets** for reproducible workflows
 - **Quarto** for reporting
