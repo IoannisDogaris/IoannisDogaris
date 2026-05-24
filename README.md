@@ -1,23 +1,22 @@
 # Hi, I'm Ioannis Dogaris 👋
 
-**Bioprocess Specialist | Data Analytics & Machine Learning in Biotechnology**
+**Data Analyst | R, Statistical Modelling & Decision‑Support Analytics**
 
-I'm a bioprocess specialist with 15+ years of experience, expanding into data science. 
-My focus is applying analytics, machine learning and statistical modeling to solve real-world bioprocessing challenges.
+Data Analyst specialising in statistical modelling, R‑based analytics and reproducible workflows. With a PhD in bioprocess engineering and 15+ years of experience analysing complex systems, I apply analytical methods to understand behaviour, identify patterns and support robust decision‑making across domains, including life science and biotechnology.
 
 ---
 
-## 🧬 Domain Expertise
-- Upstream/Downstream bioprocessing
+## 🧬 Domain Expertise (Life Science & Bioprocess Analytics)
+- Experimental design (DOE) & data interpretation
 - Process optimization and scale-up
-- Quality control and regulatory compliance
+- Upstream/Downstream bioprocessing
 - Bioreactor design, operation & monitoring
-- Experimental design and data interpretation
+- Quality control and regulatory compliance
 
 ---
 
 ## 📊 Bioprocess Analytics & Modeling
-I apply analytics and ML to support data‑driven decision‑making in bioprocessing:
+I apply analytics, statistical modeling, and ML to support data‑driven decision‑making in life science and bioprocessing:
 
 - Time‑series modeling for bioreactor monitoring  
 - Soft sensors for biomass, metabolites, and KPIs  
@@ -29,9 +28,9 @@ I apply analytics and ML to support data‑driven decision‑making in bioproces
 ---
 
 ## 💻 Technical Skills
-- **Languages**: R
+- **Languages**: R; Python (learning); SQL (learning)
 - **ML/Stats**: Predictive modeling, DOE, regression, classification, time series analysis (in progress)
-- **Tools**: RStudio, Git, Positron 
+- **Tools**: RStudio, Git, Positron, Quarto, Excel 
 - **Specialized**: Bioprocess analytics, process simulation, data-driven optimization
 
 ---
@@ -40,13 +39,13 @@ I apply analytics and ML to support data‑driven decision‑making in bioproces
 
 ### **03 – Automated Statistics Pipeline (R, targets, Quarto)**  
 A fully reproducible statistics pipeline demonstrating automated data ingestion, cleaning, descriptive statistics, table generation, visualization, and bilingual reporting (English + Swedish).  
-Designed to reflect public‑sector statistical production workflows using `targets` and Quarto.
+*Demonstrates reproducible workflows, statistical automation, and public‑sector‑style reporting.*
 
 ### **02 – Commercial Operations Analytics (R + Excel)**  
 End‑to‑end analytics workflow with synthetic data, KPI engineering, ggplot analysis, and an interactive Excel dashboard with slicers and KPI cards.  
 *Demonstrates data engineering, visualization, and business‑oriented analytics.*
 
-### **01 – Fermentation KPI Dashboard (Bioprocess Analytics)**  
+### **01 – Bioprocess Analytics - Fermentation KPI Dashboard (R)**  
 A reproducible R‑based analysis of fermentation performance metrics, including data cleaning, KPI engineering, visualization, and a structured R Markdown report.  
 *Demonstrates bioprocess analytics, reproducible workflows, and clear scientific communication.*
 
