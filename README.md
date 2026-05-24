@@ -2,7 +2,7 @@
 
 **Data Analyst | R, Statistical Modelling & Decision‑Support Analytics**
 
-Data Analyst specialising in statistical modelling, R‑based analytics and reproducible workflows. With a PhD in bioprocess engineering and 15+ years of experience analysing complex systems, I apply analytical methods to understand behaviour, identify patterns and support robust decision‑making across domains, including life science and biotechnology.
+Data Analyst specialising in statistical modelling, R‑based analytics and reproducible workflows. With a PhD in Chemical Engineering and 15+ years of experience analysing complex systems, I apply analytical methods to understand behaviour, identify patterns and support robust decision‑making across domains, including life science and biotechnology.
 
 ---
 
@@ -15,7 +15,7 @@ Data Analyst specialising in statistical modelling, R‑based analytics and repr
 
 ---
 
-## 📊 Bioprocess Analytics & Modeling
+## 📊 Applied Analytics & Modeling (Life Science & Bioprocess Examples) 
 I apply analytics, statistical modeling, and ML to support data‑driven decision‑making in life science and bioprocessing:
 
 - Time‑series modeling for bioreactor monitoring  
@@ -64,7 +64,7 @@ RSM‑based optimization for bioprocess parameters.
 - Advanced time-series modeling (tsibble, forecast)
 - Automated Statistical Process Control dashboards   
 - Hybrid mechanistic + ML models 
-- Digitalization workflows for GMP environments 
+- Digitalization and data workflows in regulated environments 
 
 ---
 
