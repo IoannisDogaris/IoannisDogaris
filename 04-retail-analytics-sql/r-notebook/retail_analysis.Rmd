@@ -1,0 +1,311 @@
+---
+title: "Retail Sales Analytics – SQL + R (PostgreSQL)"
+author: "Ioannis Dogaris"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: cosmo
+    df_print: paged
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(DBI)
+library(RPostgres)
+library(dbplyr)
+library(here)
+```
+
+## 1. Project setup
+
+### 1.1 Connect to PostgreSQL
+
+```{r connection}
+con <- dbConnect(
+  RPostgres::Postgres(),
+  dbname = "retail_analytics",
+  host   = "localhost",
+  port   = 5432,
+  user   = "postgres",
+  password = "1234"
+)
+con
+```
+
+### 1.2 Define SQL helper function
+
+```{r sql-helper}
+data_dir <- here::here("04-retail-analytics-sql/data")
+
+run_sql_file <- function(path) {
+  sql <- readr::read_file(path)
+
+  # Split only on semicolons that end a line
+  statements <- unlist(strsplit(sql, ";(?=(?:[^']|'[^']*')*$)", perl = TRUE))
+
+  # Clean whitespace
+  statements <- trimws(statements)
+
+  # Remove empty statements
+  statements <- statements[nchar(statements) > 0]
+
+  # Execute each statement
+  purrr::walk(statements, ~ dbExecute(con, .x))
+}
+```
+
+### 1.3 Load CSV data
+
+```{r load-data}
+data_dir <- here::here("04-retail-analytics-sql/data")
+
+products    <- readr::read_csv(file.path(data_dir, "products.csv"), show_col_types = FALSE)
+customers   <- readr::read_csv(file.path(data_dir, "customers.csv"), show_col_types = FALSE)
+orders      <- readr::read_csv(file.path(data_dir, "orders.csv"), show_col_types = FALSE)
+order_items <- readr::read_csv(file.path(data_dir, "order_items.csv"), show_col_types = FALSE)
+```
+
+### 1.4 Apply schema and insert data
+
+```{r schema-sql}
+sql_dir <- here::here("04-retail-analytics-sql/sql")
+
+# Run SQL scripts (they execute directly, no need to store return values)
+run_sql_file(file.path(sql_dir, "01_schema.sql"))
+run_sql_file(file.path(sql_dir, "02_data_cleaning.sql"))
+run_sql_file(file.path(sql_dir, "03_joins_aggregations.sql"))
+run_sql_file(file.path(sql_dir, "04_window_functions.sql"))
+
+# Load data into tables
+dbWriteTable(con, "products", products, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "customers", customers, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "orders", orders, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "order_items", order_items, append = TRUE, row.names = FALSE)
+```
+
+
+## 2. Exploratory data analysis
+
+### 2.1 Basic summaries
+
+```{r eda-summary}
+tbl(con, "products") %>% glimpse()
+tbl(con, "customers") %>% glimpse()
+tbl(con, "orders") %>% glimpse()
+tbl(con, "order_items") %>% glimpse()
+```
+
+```{r eda-counts}
+tbl(con, "orders") %>%
+  count(order_region, order_channel) %>%
+  arrange(desc(n)) %>%
+  collect()
+```
+
+### 2.2 Missing values
+
+```{r missing-values}
+check_missing <- function(tbl_name) {
+  df <- tbl(con, tbl_name) %>% collect()
+  tibble(
+    table = tbl_name,
+    column = names(df),
+    missing = purrr::map_int(df, ~ sum(is.na(.x))),
+    pct_missing = round(missing / nrow(df) * 100, 1)
+  )
+}
+
+bind_rows(
+  check_missing("products"),
+  check_missing("customers"),
+  check_missing("orders"),
+  check_missing("order_items")
+)
+```
+
+### 2.3 Distribution of basket value
+
+```{r distribution-plots, fig.height=4, fig.width=7}
+sales_fact <- tbl(con, "v_sales_fact")
+
+basket <- sales_fact %>%
+  group_by(order_id) %>%
+  summarise(basket_value = sum(line_total), .groups = "drop") %>%
+  collect()
+
+ggplot(basket, aes(x = basket_value)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "white") +
+  labs(
+    title = "Distribution of Basket Value",
+    x = "Basket value",
+    y = "Count of orders"
+  ) +
+  theme_minimal()
+```
+
+## 3. SQL + R integration
+
+### 3.1 Raw SQL
+
+```{r sql-direct}
+top_products_sql <- "
+SELECT
+  product_name,
+  category,
+  SUM(line_total) AS total_revenue
+FROM v_sales_fact
+GROUP BY product_name, category
+ORDER BY total_revenue DESC
+LIMIT 5;
+"
+
+top_products <- dbGetQuery(con, top_products_sql)
+top_products
+```
+
+### 3.2 dbplyr
+
+```{r dbplyr}
+sales_tbl <- tbl(con, "v_sales_fact")
+
+revenue_by_region <- sales_tbl %>%
+  group_by(order_region) %>%
+  summarise(
+    total_revenue = sum(line_total),
+    orders = n_distinct(order_id),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(total_revenue)) %>%
+  collect()
+
+revenue_by_region
+```
+
+## 4. Visualizations
+
+### 4.1 Revenue over time
+
+```{r revenue-over-time, fig.height=4, fig.width=7}
+daily_rev <- tbl(con, "v_daily_revenue") %>% collect()
+
+ggplot(daily_rev, aes(x = order_date, y = daily_revenue)) +
+  geom_line(color = "darkgreen", linewidth = 1) +
+  geom_point(color = "darkgreen") +
+  labs(
+    title = "Daily Revenue",
+    x = "Date",
+    y = "Revenue"
+  ) +
+  theme_minimal()
+```
+
+### 4.2 Top products bar chart
+
+```{r top-products-plot, fig.height=4, fig.width=7}
+top_products_plot <- top_products %>%
+  mutate(product_name = fct_reorder(product_name, total_revenue))
+
+ggplot(top_products_plot, aes(x = product_name, y = total_revenue, fill = category)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Top Products by Revenue",
+    x = "Product",
+    y = "Total revenue"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2")
+```
+
+### 4.3 Customer segments
+
+```{r customer-segments, fig.height=4, fig.width=7}
+customer_seg_sql <- "
+WITH customer_spend AS (
+  SELECT
+    customer_id,
+    first_name,
+    last_name,
+    SUM(line_total) AS total_revenue
+  FROM v_sales_fact
+  GROUP BY customer_id, first_name, last_name
+)
+SELECT
+  customer_id,
+  first_name,
+  last_name,
+  total_revenue,
+  CASE
+    WHEN total_revenue >= 60 THEN 'High'
+    WHEN total_revenue >= 30 THEN 'Medium'
+    ELSE 'Low'
+  END AS segment
+FROM customer_spend;
+"
+
+customer_segments <- dbGetQuery(con, customer_seg_sql)
+
+ggplot(customer_segments, aes(x = segment, y = total_revenue, fill = segment)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(
+    title = "Customer Revenue by Segment",
+    x = "Segment",
+    y = "Total revenue"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1")
+```
+
+### 4.4 Heatmap of sales by weekday and hour
+
+```{r heatmap-weekday-hour, fig.height=5, fig.width=7}
+heatmap_sql <- "
+SELECT
+  TO_CHAR(order_date, 'D') AS weekday_num,
+  EXTRACT(HOUR FROM order_time) AS hour_of_day,
+  SUM(line_total) AS total_revenue
+FROM v_sales_fact
+GROUP BY TO_CHAR(order_date, 'D'), EXTRACT(HOUR FROM order_time);
+"
+
+heatmap_df <- dbGetQuery(con, heatmap_sql) %>%
+  mutate(
+    weekday_num = as.integer(weekday_num),
+    hour_of_day = as.integer(hour_of_day),
+    weekday = factor(
+      weekday_num,
+      levels = 1:7,
+      labels = c('Sun','Mon','Tue','Wed','Thu','Fri','Sat')
+    )
+  )
+
+ggplot(heatmap_df, aes(x = hour_of_day, y = weekday, fill = total_revenue)) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(option = "C") +
+  labs(
+    title = "Revenue Heatmap by Weekday and Hour",
+    x = "Hour of day",
+    y = "Weekday",
+    fill = "Revenue"
+  ) +
+  theme_minimal()
+```
+
+## 5. Insights and recommendations
+
+```{r insights, echo=FALSE}
+top_products
+revenue_by_region
+customer_segments %>% count(segment)
+```
+
+- Coffee and snack products dominate revenue.
+- Online and North-region customers contribute strongly.
+- A small group of customers forms a high-value segment.
+- Basket values are higher when coffee products are included.
+- Revenue peaks in morning and early evening hours.
+
+```{r disconnect, echo=FALSE}
+dbDisconnect(con)
+```

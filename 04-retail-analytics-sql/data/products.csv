@@ -1,0 +1,11 @@
+product_id,product_name,category,brand,unit_price,cost
+1,Espresso Beans 1kg,Coffee,HomeBrew,14.90,8.00
+2,Ground Coffee 500g,Coffee,HomeBrew,7.90,4.20
+3,Herbal Tea Box 20pcs,Tea,Leaf&Co,4.50,2.10
+4,Green Tea Box 20pcs,Tea,Leaf&Co,4.90,2.30
+5,Dark Chocolate Bar 70%,Snacks,SweetBite,2.20,1.00
+6,Milk Chocolate Bar,Snacks,SweetBite,1.90,0.90
+7,Granola 500g,Breakfast,GoodStart,5.90,3.10
+8,Almond Milk 1L,Dairy-Free,NutriDrink,3.20,1.60
+9,Orange Juice 1L,Beverages,FreshPress,3.50,1.80
+10,Protein Bar 50g,Snacks,FitFuel,2.80,1.40
