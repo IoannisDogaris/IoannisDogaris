@@ -37,6 +37,11 @@ I apply analytics, statistical modeling, and ML to support data‑driven decisio
 
 ## 🚀 Featured Projects
 
+### **04 – Retail Analytics SQL + R Pipeline (PostgreSQL + R Markdown)**  
+An end‑to‑end retail analytics pipeline combining PostgreSQL for data modeling and SQL transformations with R for exploratory analysis, visualization, and reporting.  
+Includes schema design, data cleaning views, analytical joins, window functions, business‑focused queries, and a fully automated R Markdown workflow.  
+*Demonstrates SQL engineering, database design, and integrated SQL + R analytics.*
+
 ### **03 – Automated Statistics Pipeline (R, targets, Quarto)**  
 A fully reproducible statistics pipeline demonstrating automated data ingestion, cleaning, descriptive statistics, table generation, visualization, and bilingual reporting (English + Swedish).  
 *Demonstrates reproducible workflows, statistical automation, and public‑sector‑style reporting.*
