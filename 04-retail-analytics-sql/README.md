@@ -169,7 +169,7 @@ con <- dbConnect(
   host   = "localhost",  
   port   = 5432,  
   user   = "postgres",  
-  password = "postgres"  
+  password = "your_password_here"  
 )
 ```
 ### 4. Install Required R Packages
