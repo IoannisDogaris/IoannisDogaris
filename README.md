@@ -53,7 +53,7 @@ End‑to‑end analytics workflow with synthetic data, KPI engineering, ggplot a
 A reproducible R‑based analysis of fermentation performance metrics, including data cleaning, KPI engineering, visualization, and a structured R Markdown report.  
 *Demonstrates bioprocess analytics, reproducible workflows, and clear scientific communication.*
 
-## 📦 Additional Tools & Utilities (Python)
+### 📦 Additional Tools & Utilities (Python)
 **Break Reminder Utility (Python, Tkinter)**  
 A lightweight desktop tool that provides periodic posture and stretch reminders during long coding sessions.  
 Includes a configurable timer, pop‑up notifications, and AI‑generated stretch images with short descriptions.  
