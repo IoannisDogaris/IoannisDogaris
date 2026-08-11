@@ -28,9 +28,9 @@ I apply analytics, statistical modeling, and ML to support data‑driven decisio
 ---
 
 ## 💻 Technical Skills
-- **Languages**: R; Python (learning); SQL (learning)
+- **Languages**: R; Python (expanding); SQL (PostgreSQL, MS SQL)
 - **ML/Stats**: Predictive modeling, DOE, regression, classification, time series analysis (in progress)
-- **Tools**: RStudio, Git, Positron, Quarto, Excel 
+- **Tools**: RStudio, Git, Positron, Quarto, PostgreSQL, Excel 
 - **Specialized**: Bioprocess analytics, process simulation, data-driven optimization
 
 ---
@@ -52,6 +52,12 @@ End‑to‑end analytics workflow with synthetic data, KPI engineering, ggplot a
 ### **01 – Bioprocess Analytics - Fermentation KPI Dashboard (R)**  
 A reproducible R‑based analysis of fermentation performance metrics, including data cleaning, KPI engineering, visualization, and a structured R Markdown report.  
 *Demonstrates bioprocess analytics, reproducible workflows, and clear scientific communication.*
+
+## 📦 Additional Tools & Utilities (Python)
+**Break Reminder Utility (Python, Tkinter)**  
+A lightweight desktop tool that provides periodic posture and stretch reminders during long coding sessions.  
+Includes a configurable timer, pop‑up notifications, and AI‑generated stretch images with short descriptions.  
+*Expands my Python toolkit with practical scripting for workflow and ergonomic support.*
 
 ### **Bioreactor Time‑Series Analysis** *(in progress)*  
 Anomaly detection, forecasting, and soft‑sensor development for upstream processes.
